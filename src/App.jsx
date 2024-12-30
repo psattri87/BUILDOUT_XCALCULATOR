@@ -29,7 +29,7 @@ function App() {
     <div>
       <h2>React Calculator</h2>
       <input type="text" value={input} onChange={() => {}} />
-      {result && <div>{result}</div>}
+      {(isNaN(result) || result) && <div>{result}</div>}
 
       <div className="gridBox">
         <button onClick={handleButtonClick}>7</button>

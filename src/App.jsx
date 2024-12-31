@@ -3,7 +3,8 @@ import "./App.css";
 
 function App() {
   const [input, setInput] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState("");
+  const [showResult, setShowResult] = useState(null);
 
   const handleButtonClick = (event) => {
     if (
@@ -17,19 +18,25 @@ function App() {
   };
 
   const getResult = () => {
-    setResult(eval(input));
+    setShowResult(true);
+    try {
+      setResult(eval(input).toString());
+    } catch (error) {
+      setResult("Error");
+    }
   };
 
   const cancel = () => {
     setInput("");
     setResult(null);
+    setShowResult(false);
   };
 
   return (
     <div>
       <h2>React Calculator</h2>
       <input type="text" value={input} onChange={() => {}} />
-      {(isNaN(result) || result) && <div>{result}</div>}
+      {result !== undefined && <div>{result}</div>}
 
       <div className="gridBox">
         <button onClick={handleButtonClick}>7</button>
